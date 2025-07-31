@@ -8,7 +8,6 @@ import numpy as np
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 mynet = Mynet().to(device)
-mynet.load_state_dict(torch.load('./model/mynet_best_model.pth', map_location=device))
 loss_function = nn.CrossEntropyLoss().to(device)
 optimizer = torch.optim.Adam(mynet.parameters())
 
