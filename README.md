@@ -19,7 +19,6 @@ ImageNet-100-Classification/
 ├── Inception.py                   # InceptionNet model definition
 ├── data.py                        # Data loader
 ├── train.py                       # Training script
-├── googlenet_inception.png        # Googlenet Architecture
 ├── test.py                        # Testing script
 ├── requirements.txt               # Python dependencies
 └── README.md                      # Project documentation
