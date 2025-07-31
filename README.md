@@ -58,6 +58,27 @@ This project implements a custom InceptionNet architecture featuring:
   - Fully connected layers: 1024 → 512 → 256 → 100
   - Output: 100 classes
 
+## Dataset
+
+### ImageNet Subset (100 classes)
+- **Training data**: Distributed across `train.X1` to `train.X4` directories
+- **Validation data**: Stored in `val.X` directory
+- **Number of classes**: 100 ImageNet classes
+- **Image format**: JPEG
+- **Class labels**: Stored in `data/Labels.json`
+
+⚠️ **Note**: Due to size limitations, the actual image data (`train.X1/`, `train.X2/`, `train.X3/`, `train.X4/`, `val.X/`) is not included in this repository. You need to prepare your own ImageNet subset following the directory structure above.
+
+### Data Preprocessing
+- **During training**:
+  - Random crop to 224×224
+  - Random horizontal flip
+  - Normalization: mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+
+- **During testing**:
+  - Resize to 224×224
+  - Normalization: mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+
 ## Usage
 
 ### 1. Train the Model
