@@ -18,6 +18,7 @@ ImageNet-100-Classification/
 │   └── last_best_model.pth       # Latest best model
 ├── logs/                         # Training logs visualization
 ├── Inception.py                   # InceptionNet model definition
+├── start_tensorboard.py           # method to start TensorBoard
 ├── data.py                        # Data loader
 ├── train.py                       # Training script
 ├── test.py                        # Testing script
@@ -108,3 +109,4 @@ The testing script will:
 - Output prediction results and correct answer
 
 - Show Top-5 prediction results
+
