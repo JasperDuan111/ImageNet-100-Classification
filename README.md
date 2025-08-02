@@ -16,6 +16,7 @@ ImageNet-100-Classification/
 ├── model/                         # Model save directory
 │   ├── mynet_best_model.pth      # Trained model weights
 │   └── last_best_model.pth       # Latest best model
+├── logs/                         # Training logs visualization
 ├── Inception.py                   # InceptionNet model definition
 ├── data.py                        # Data loader
 ├── train.py                       # Training script
@@ -105,4 +106,5 @@ The testing script will:
 - Randomly select an image from the validation set
 - Display the image
 - Output prediction results and correct answer
+
 - Show Top-5 prediction results
