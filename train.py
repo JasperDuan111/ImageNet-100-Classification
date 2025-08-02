@@ -1,13 +1,21 @@
 import torch
 from torch import nn
+from torch.utils.tensorboard import SummaryWriter
 from Inception import InceptionNet as Mynet
 from data import get_data
 from sklearn.metrics import precision_score, recall_score, f1_score
 import numpy as np
+import os
+from datetime import datetime
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+log_dir = f"./logs/inception_training_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+os.makedirs(log_dir, exist_ok=True)
+writer = SummaryWriter(log_dir)
+
 mynet = Mynet().to(device)
+# mynet.load_state_dict(torch.load('./model/last_best_model.pth', map_location=device))
 loss_function = nn.CrossEntropyLoss().to(device)
 optimizer = torch.optim.Adam(mynet.parameters())
 
@@ -36,6 +44,7 @@ if __name__ == "__main__":
             train_step += 1
             if train_step % 100 == 0:
                 print(f"Step {train_step}, Loss: {loss.item():.4f}")
+                writer.add_scalar('Loss/Train_Step', loss.item(), train_step)
 
         mynet.eval()
         total_test_loss = 0
@@ -74,6 +83,13 @@ if __name__ == "__main__":
         print(f"Recall: {recall:.4f}")
         print(f"F1-Score: {f1:.4f}")
         print("----------------------------")
+
+        writer.add_scalar('Loss/Validation', avg_test_loss, epoch + 1)
+        writer.add_scalar('Accuracy/Validation', accuracy, epoch + 1)
+        writer.add_scalar('Precision/Validation', precision, epoch + 1)
+        writer.add_scalar('Recall/Validation', recall, epoch + 1)
+        writer.add_scalar('F1-Score/Validation', f1, epoch + 1)
+        writer.add_scalar('Learning_Rate', optimizer.param_groups[0]['lr'], epoch + 1)
         
         # 取消以下注释以使用学习率调度
         # scheduler.step(avg_test_loss)
@@ -82,3 +98,6 @@ if __name__ == "__main__":
             best_accuracy = accuracy
             torch.save(mynet.state_dict(), f'./model/mynet_best_model.pth')
             print(f"New best model saved with accuracy: {accuracy:.4f}")
+            writer.add_scalar('Best_Accuracy', best_accuracy, epoch + 1)
+    
+    writer.close()
