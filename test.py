@@ -4,7 +4,7 @@ import random
 from PIL import Image
 import torch
 from torchvision import transforms  
-from Inception import InceptionNet
+from model import InceptionNet
 
 def load_imagenet_labels():
     with open('data/Labels.json', 'r') as f:
@@ -98,3 +98,4 @@ if true_class_idx is not None:
     if top5_correct and not is_correct:
         true_rank = [idx.item() for idx in top_indices].index(true_class_idx) + 1
         print(f"True class ranked #{true_rank} in top-5 predictions")
+
