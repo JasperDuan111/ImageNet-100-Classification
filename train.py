@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 from torch.utils.tensorboard import SummaryWriter
-from Inception import InceptionNet as Mynet
+from model import InceptionNet as Mynet
 from data import get_data
 from sklearn.metrics import precision_score, recall_score, f1_score
 import numpy as np
@@ -100,4 +100,5 @@ if __name__ == "__main__":
             print(f"New best model saved with accuracy: {accuracy:.4f}")
             writer.add_scalar('Best_Accuracy', best_accuracy, epoch + 1)
     
+
     writer.close()
