@@ -1,6 +1,6 @@
 # ImageNet Classification with InceptionNet
 
-This is a PyTorch-based ImageNet-100 image classification project that uses a architecture based on Googlenet(Inception) to train and test on a subset of the ImageNet dataset (100 classes). The TOP-1 accuracy reaches 0.73 using RTX3060 gpu, without the limitation of gpu, you can try to enlarge the batch size of train_data_loader which may help a lot. You can also use Auxiliary Classification or change the architecture of fc to get better performance. 
+This is a PyTorch-based ImageNet-100 image classification project that uses a architecture based on Googlenet(Inception) to train and test on a subset of the ImageNet dataset (100 classes). The TOP-1 accuracy reaches 0.73 using RTX3060 GPU, you can try to enlarge the batch size of train_data_loader which may help a lot if your GPU computational power is adequate. You can also use Auxiliary Classification or change the architecture of fc to get better performance. However, in 'model.py', the fc layer diverges from googlenet which enhances the performance but reduce the training speed.
 
 ## Project Structure
 
@@ -17,7 +17,8 @@ ImageNet-100-Classification/
 │   ├── mynet_best_model.pth      # Trained model weights
 │   └── last_best_model.pth       # Latest best model
 ├── logs/                         # Training logs visualization
-├── Inception.py                   # InceptionNet model definition
+├── model.py                      # Googlenet model definition
+├── Inception_v2.py               # Inception_v2 model definition
 ├── start_tensorboard.py           # method to start TensorBoard
 ├── data.py                        # Data loader
 ├── train.py                       # Training script
@@ -109,4 +110,5 @@ The testing script will:
 - Output prediction results and correct answer
 
 - Show Top-5 prediction results
+
 
