@@ -19,6 +19,7 @@ ImageNet-100-Classification/
 ├── logs/                         # Training logs visualization
 ├── model.py                      # Googlenet model definition
 ├── Inception_v2.py               # Inception_v2 model definition
+├── XceptionNet.py               # XceptionNet model definition
 ├── start_tensorboard.py           # method to start TensorBoard
 ├── data.py                        # Data loader
 ├── train.py                       # Training script
@@ -110,6 +111,7 @@ The testing script will:
 - Output prediction results and correct answer
 
 - Show Top-5 prediction results
+
 
 
 
